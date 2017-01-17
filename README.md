@@ -22,13 +22,13 @@ def connected(peers):
 ```
 
 The interface sets those states for you:
-* `*.joined`
 * `*.connected`
+* `*.joined`
 * `*.departed`
 
-connected is set while at least one peer is connected.
+`connected` is set while at least one peer is connected.
 
-Please make sure to remove the joined and departed state to signal that you have
-handled the event. It will be raised again when another node joins or leaves.
+`joined` and `departed` states will clear at the end of the hook invocation.
+They behave more like events than states.
 
 The units() method only works inside of the relation hook which triggered the handler.
