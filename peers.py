@@ -4,6 +4,8 @@ from charmhelpers.core.hookenv import log
 from charmhelpers.core.hookenv import in_relation_hook
 from charmhelpers.core.hookenv import atexit
 from charmhelpers.core.hookenv import relation_type
+from charmhelpers.core.hookenv import related_units
+from charmhelpers.core.hookenv import relation_get
 from charms.reactive.bus import StateList
 from charms.reactive.bus import State
 from charms.reactive import scopes
@@ -32,8 +34,8 @@ class PeerDiscovery(RelationBase):
         """ Retrieve all connected hosts private-address
         Works only in hook context. """
         hosts = []
-        for conv in self.conversations():
-            hosts.append(conv.get_remote('private-address'))
+        for unit in related_units():
+            hosts.append(relation_get('private-address', unit))
         return hosts
 
     def set_trigger_like_state(self, state):
