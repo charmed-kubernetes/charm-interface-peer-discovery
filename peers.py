@@ -12,7 +12,7 @@ from charms.reactive import scopes
 
 
 class PeerDiscovery(RelationBase):
-    scope = scopes.UNIT
+    scope = scopes.SERVICE
 
     class states(StateList):
         connected = State('{relation_name}.connected')
